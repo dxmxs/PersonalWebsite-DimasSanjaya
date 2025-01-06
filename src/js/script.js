@@ -63,3 +63,60 @@ if (
 } else {
   darkToggle.checked = false;
 }
+
+// dropdown menu
+const dropdownBtn = document.getElementById("dropdownBtn");
+const dropdownMenu = document.getElementById("dropdownMenu");
+const contentSections = document.querySelectorAll("section[id]"); // Pilih semua section dengan id
+
+dropdownBtn.addEventListener("click", () => {
+  dropdownMenu.classList.toggle("hidden");
+});
+
+dropdownMenu.addEventListener("click", (event) => {
+  if (event.target.tagName === "A") {
+    const targetId = event.target.getAttribute("href"); // Ambil id section dari href
+
+    // Sembunyikan semua section
+    contentSections.forEach((section) => {
+      section.classList.add("hidden");
+    });
+
+    // Tampilkan section yang dipilih
+    const targetSection = document.querySelector(targetId);
+    targetSection.classList.remove("hidden");
+
+    // Tutup dropdown menu
+    dropdownMenu.classList.add("hidden");
+  }
+});
+
+// function filterPortfolio(category) {
+//   portfolioItems.forEach((item) => {
+//     if (category === "all" || item.getAttribute("data-category") === category) {
+//       item.style.display = "block";
+//     } else {
+//       item.style.display = "none";
+//     }
+//   });
+
+//   // Menambahkan kelas active pada tombol filter yang dipilih
+//   filterButtons.forEach((button) => {
+//     button.classList.remove("active");
+//   });
+//   const activeButton = document.querySelector(`[data-category="${category}"]`);
+//   if (activeButton) {
+//     activeButton.classList.add("active");
+//   }
+// }
+
+// // Menambahkan event listener pada setiap tombol filter
+// filterButtons.forEach((button) => {
+//   button.addEventListener("click", () => {
+//     const category = button.getAttribute("data-category");
+//     filterPortfolio(category);
+//   });
+// });
+
+// // Filter default: Menampilkan semua portfolio items
+// filterPortfolio("all");
